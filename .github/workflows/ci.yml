@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Install system dependencies
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends libffi-dev
+
       - name: Install package and dev dependencies
         run: pip install -e ".[dev]"
 
@@ -33,6 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Install system dependencies
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends libffi-dev
+
       - name: Install ansible-lint
         run: pip install ansible-lint
 
@@ -47,10 +57,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install Ruby
+      - name: Install system dependencies
         run: |
           apt-get update -qq
-          apt-get install -y --no-install-recommends ruby ruby-bundler ruby-dev build-essential
+          apt-get install -y --no-install-recommends \
+            libffi-dev ruby ruby-bundler ruby-dev build-essential
 
       - name: Install Python packages
         run: pip install -e . ansible-core behave
@@ -88,10 +99,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install Ruby
+      - name: Install system dependencies
         run: |
           apt-get update -qq
-          apt-get install -y --no-install-recommends ruby ruby-bundler ruby-dev build-essential
+          apt-get install -y --no-install-recommends \
+            libffi-dev ruby ruby-bundler ruby-dev build-essential
 
       - name: Install ansible-core ${{ matrix.ansible-core-version }}
         run: pip install -e . "ansible-core==${{ matrix.ansible-core-version }}"
