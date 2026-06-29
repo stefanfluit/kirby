@@ -1,10 +1,18 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - two tasks, coverage-skipped
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy1.conf
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy2.conf
+    - name: Apply first template (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy1.conf
+        mode: "0644"
+
+    - name: Apply second template (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy2.conf
+        mode: "0644"

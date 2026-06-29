@@ -1,0 +1,27 @@
+---
+- name: Reset workspace [coverage_skip]
+  ansible.builtin.file:
+    path: "{{ kirby_demo_workspace }}"
+    state: absent
+  tags: [setup]
+
+- name: Create workspace [coverage_skip]
+  ansible.builtin.file:
+    path: "{{ kirby_demo_workspace }}"
+    state: directory
+    mode: "0755"
+  tags: [setup]
+
+- name: Create hello.txt
+  ansible.builtin.copy:
+    content: "{{ kirby_demo_hello_content }}"
+    dest: "{{ kirby_demo_workspace }}/hello.txt"
+    mode: "0644"
+  tags: [demo]
+
+- name: Create world.txt
+  ansible.builtin.copy:
+    content: "{{ kirby_demo_world_content }}"
+    dest: "{{ kirby_demo_workspace }}/world.txt"
+    mode: "0644"
+  tags: [demo]

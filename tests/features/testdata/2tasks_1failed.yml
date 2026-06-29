@@ -1,8 +1,16 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - two tasks, one failed
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - template: src=dummy.conf.j2 dest=./dummy1.conf
-    - fail:
+    - name: Render configuration template
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy1.conf
+        mode: "0644"
+
+    - name: Trigger intentional failure
+      ansible.builtin.fail:
+        msg: Intentional failure for BDD test

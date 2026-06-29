@@ -1,8 +1,18 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - two tasks changed
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - template: src=dummy.conf.j2 dest=./dummy1.conf
-    - template: src=dummy.conf.j2 dest=./dummy_no_serverspec_test.conf
+    - name: Render main configuration template
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy1.conf
+        mode: "0644"
+
+    - name: Render secondary template
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy_no_serverspec_test.conf
+        mode: "0644"

@@ -1,7 +1,9 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - one task, no changes
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - ping:
+    - name: Ping target host
+      ansible.builtin.ping:
