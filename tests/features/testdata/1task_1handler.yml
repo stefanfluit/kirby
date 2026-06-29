@@ -1,12 +1,20 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - one task with handler
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - template: src=dummy.conf.j2 dest=./dummy1.conf
+    - name: Render main template
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy1.conf
+        mode: "0644"
       notify:
-        - another template
+        - Render secondary template
   handlers:
-    - name: another template
-      template: src=dummy.conf.j2 dest=./dummy_no_serverspec_test.conf
+    - name: Render secondary template
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy_no_serverspec_test.conf
+        mode: "0644"

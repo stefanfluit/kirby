@@ -1,95 +1,186 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - thirty tasks, all coverage-skipped
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy0.conf
+    - name: Apply template 0 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy0.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy1.conf
+    - name: Apply template 1 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy1.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy2.conf
+    - name: Apply template 2 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy2.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy3.conf
+    - name: Apply template 3 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy3.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy4.conf
+    - name: Apply template 4 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy4.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy5.conf
+    - name: Apply template 5 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy5.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy6.conf
+    - name: Apply template 6 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy6.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy7.conf
+    - name: Apply template 7 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy7.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy8.conf
+    - name: Apply template 8 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy8.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy9.conf
+    - name: Apply template 9 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy9.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy10.conf
+    - name: Apply template 10 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy10.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy11.conf
+    - name: Apply template 11 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy11.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy12.conf
+    - name: Apply template 12 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy12.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy13.conf
+    - name: Apply template 13 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy13.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy14.conf
+    - name: Apply template 14 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy14.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy15.conf
+    - name: Apply template 15 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy15.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy16.conf
+    - name: Apply template 16 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy16.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy17.conf
+    - name: Apply template 17 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy17.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy18.conf
+    - name: Apply template 18 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy18.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy19.conf
+    - name: Apply template 19 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy19.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy20.conf
+    - name: Apply template 20 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy20.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy21.conf
+    - name: Apply template 21 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy21.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy22.conf
+    - name: Apply template 22 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy22.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy23.conf
+    - name: Apply template 23 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy23.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy24.conf
+    - name: Apply template 24 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy24.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy25.conf
+    - name: Apply template 25 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy25.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy26.conf
+    - name: Apply template 26 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy26.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy27.conf
+    - name: Apply template 27 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy27.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy28.conf
+    - name: Apply template 28 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy28.conf
+        mode: "0644"
 
-    - name: apply template (coverage_skip)
-      template: src=dummy.conf.j2 dest=./dummy29.conf
+    - name: Apply template 29 (coverage_skip)
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy29.conf
+        mode: "0644"

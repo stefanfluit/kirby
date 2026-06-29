@@ -1,0 +1,14 @@
+---
+profile: production
+
+warn_list:
+  - yaml[trailing-spaces]
+
+skip_list:
+  - yaml[line-length]  # line length enforced by ruff
+  - galaxy[no-changelog]  # no changelog maintained for this project
+
+exclude_paths:
+  - .git/
+  - .ansible/
+  - tests/features/testdata/spec/

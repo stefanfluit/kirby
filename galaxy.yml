@@ -1,0 +1,15 @@
+---
+namespace: stefanfluit
+name: kirby
+version: 2026.6.0
+readme: README.md
+description: Code coverage tool for Ansible playbooks using Serverspec
+license:
+  - GPL-3.0-or-later
+authors:
+  - Stefan Fluit <stefan@fluit-online.nl>
+tags:
+  - tools
+repository: https://github.com/stefanfluit/kirby
+documentation: https://github.com/stefanfluit/kirby
+homepage: https://github.com/stefanfluit/kirby

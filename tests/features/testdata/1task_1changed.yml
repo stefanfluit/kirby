@@ -1,7 +1,12 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- name: Test - one task changed
+  hosts: localhost
+  gather_facts: false
   vars:
     var1: v1
   tasks:
-    - template: src=dummy.conf.j2 dest=./dummy1.conf
+    - name: Render configuration template
+      ansible.builtin.template:
+        src: dummy.conf.j2
+        dest: ./dummy1.conf
+        mode: "0644"
