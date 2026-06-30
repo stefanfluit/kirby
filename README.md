@@ -119,15 +119,9 @@ Kirby ignores tasks whose result is not `changed`.
     state: directory
 ```
 
-## Try the Example
+## Example
 
-The `examples/` directory contains a working demo:
-
-```shell
-cd examples
-bundle install
-ansible-playbook create_files.yml -i inventory
-```
+See [stefanfluit/kirby-example](https://github.com/stefanfluit/kirby-example) for a working project.
 
 ## FAQ
 

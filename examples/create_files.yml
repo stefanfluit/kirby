@@ -1,8 +1,0 @@
----
-# Demonstrates Kirby coverage: two tasks, one Serverspec test.
-# Expected result: 50% coverage, "create world.txt" listed as not tested.
-- name: Kirby coverage demo
-  hosts: localhost
-  gather_facts: false
-  roles:
-    - role: kirby_demo
