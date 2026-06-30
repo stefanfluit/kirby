@@ -13,6 +13,25 @@ from kirby.config import KirbyConfig, load_config
 from kirby.coverage import CoverageTracker
 from kirby.runner import ServerspecResult, ServerspecRunner
 
+DOCUMENTATION = """
+    name: kirby
+    type: notification
+    short_description: Measure Serverspec coverage of changed Ansible tasks
+    description:
+      - Runs Serverspec before and after each changed task and tracks which
+        tasks are covered by at least one passing test.
+      - Prints a coverage summary at the end of the playbook run.
+    requirements:
+      - A C(kirby.cfg) file in the playbook directory, or the C(KIRBY_CONFIG)
+        environment variable pointing to a config file.
+    options: {}
+    notes:
+      - Enable by setting C(KIRBY_CONFIG) or placing C(kirby.cfg) in the
+        playbook directory.
+      - Tag tasks with C([coverage_skip]) in their name to exclude them from
+        triggering Serverspec runs.
+"""
+
 CALLBACK_VERSION = 2.0
 CALLBACK_TYPE = "notification"
 CALLBACK_NAME = "kirby"
