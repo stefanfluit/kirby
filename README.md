@@ -131,9 +131,14 @@ ansible-playbook create_files.yml -i inventory
 
 ## FAQ
 
-- [How does Kirby calculate coverage?](FAQ.md#work)
-- [Why does my playbook take longer to run?](FAQ.md#slow)
-- [How do I disable Kirby?](FAQ.md#disable)
+**How does Kirby calculate coverage?**
+After each `changed` task, Kirby re-runs Serverspec and compares the failure count. If failures decreased, the task is considered tested. Coverage = tested tasks / total changed tasks.
+
+**Why does my playbook run slower?**
+Kirby invokes Serverspec after every changed task. Use `changed_when: false` on tasks that don't modify state, or tag them with `[coverage_skip]` to reduce the number of Serverspec runs.
+
+**How do I disable Kirby?**
+`export KIRBY_ENABLE=no`
 
 ## Contributing
 

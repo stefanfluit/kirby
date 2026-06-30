@@ -39,11 +39,6 @@ DOCUMENTATION = """
         triggering Serverspec runs.
 """
 
-CALLBACK_VERSION = 2.0
-CALLBACK_TYPE = "notification"
-CALLBACK_NAME = "kirby"
-CALLBACK_NEEDS_ENABLED = False
-
 display = Display()
 
 

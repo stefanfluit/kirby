@@ -12,8 +12,11 @@ _require-pipx:
 	@command -v $(PIPX) >/dev/null 2>&1 || \
 		{ echo "Error: pipx not found. Install it: https://pipx.pypa.io/stable/installation/"; exit 1; }
 
-dev: _require-pipx ## Install dev dependencies (pytest, ruff, ansible-lint, behave)
-	$(PIPX) install -e ".[dev]"
+dev: _require-pipx ## Install dev tools (pytest, ruff, ansible-lint, behave)
+	$(PIPX) install pytest || $(PIPX) upgrade pytest
+	$(PIPX) install ruff || $(PIPX) upgrade ruff
+	$(PIPX) install ansible-lint || $(PIPX) upgrade ansible-lint
+	$(PIPX) install behave || $(PIPX) upgrade behave
 
 test: ## Run unit tests
 	pytest
@@ -47,5 +50,4 @@ check: lint format-check test ansible-lint ## Run all checks (lint, format, unit
 clean: ## Remove build artifacts and caches
 	find . -type f -name "*.pyc" -delete
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null; true
-	find . -name "*.egg-info" -exec rm -rf {} + 2>/dev/null; true
 	rm -rf .pytest_cache .ruff_cache .ansible htmlcov .coverage build dist
