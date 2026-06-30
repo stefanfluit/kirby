@@ -1,7 +1,7 @@
 ---
 namespace: stefanfluit
 name: kirby
-version: 2026.6.0
+version: 2026.6.1
 readme: README.md
 description: Code coverage tool for Ansible playbooks using Serverspec
 license:
