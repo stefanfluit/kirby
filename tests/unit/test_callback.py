@@ -13,7 +13,9 @@ import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from kirby.runner import ServerspecResult
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.runner import (
+    ServerspecResult,
+)
 
 FIXTURES = Path(__file__).parent.parent / "fixtures"
 
@@ -33,12 +35,15 @@ class _FakeResult:
 
 def _make_callback(cfg_path: Path) -> object:
     """Instantiate CallbackModule with a given config file."""
-    if "callback_plugins.kirby" in sys.modules:
-        del sys.modules["callback_plugins.kirby"]
+    _key = "ansible_collections.stefanfluit.kirby.plugins.callback.kirby"
+    if _key in sys.modules:
+        del sys.modules[_key]
 
     os.environ["KIRBY_CONFIG"] = str(cfg_path)
     try:
-        from callback_plugins.kirby import CallbackModule
+        from ansible_collections.stefanfluit.kirby.plugins.callback.kirby import (
+            CallbackModule,
+        )
 
         return CallbackModule()
     finally:

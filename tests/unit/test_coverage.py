@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from kirby.coverage import CoverageResult, CoverageTracker
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.coverage import (
+    CoverageResult,
+    CoverageTracker,
+)
 
 
 class TestCoverageTracker:

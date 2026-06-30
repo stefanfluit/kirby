@@ -1,6 +1,6 @@
 """
-Pytest configuration: extends sys.path and mocks Ansible imports so unit tests
-run without ansible-core installed.
+Pytest configuration: injects the ansible_collections namespace and mocks
+Ansible imports so unit tests run without ansible-core or an installed collection.
 """
 
 from __future__ import annotations
@@ -10,16 +10,35 @@ import types
 from pathlib import Path
 from unittest.mock import MagicMock
 
-PROJECT_ROOT = Path(__file__).parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
-# Ensure the project root is on sys.path (for callback_plugins imports).
+# Build the ansible_collections.stefanfluit.kirby namespace so tests can
+# import from it without installing the collection.
+_NS = [
+    "ansible_collections",
+    "ansible_collections.stefanfluit",
+    "ansible_collections.stefanfluit.kirby",
+    "ansible_collections.stefanfluit.kirby.plugins",
+    "ansible_collections.stefanfluit.kirby.plugins.callback",
+    "ansible_collections.stefanfluit.kirby.plugins.module_utils",
+]
+for _dotted in _NS:
+    if _dotted not in sys.modules:
+        _mod = types.ModuleType(_dotted)
+        _mod.__path__ = []
+        _mod.__package__ = _dotted
+        sys.modules[_dotted] = _mod
+
+sys.modules["ansible_collections.stefanfluit.kirby.plugins.callback"].__path__ = [
+    str(PROJECT_ROOT / "plugins" / "callback")
+]
+sys.modules["ansible_collections.stefanfluit.kirby.plugins.module_utils"].__path__ = [
+    str(PROJECT_ROOT / "plugins" / "module_utils")
+]
+
+# Keep project root on sys.path for any direct file-based imports.
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
-
-# Ensure src/ is on sys.path so kirby package is importable without pip install.
-_src = str(PROJECT_ROOT / "src")
-if _src not in sys.path:
-    sys.path.insert(0, _src)
 
 
 class _FakeCallbackBase:

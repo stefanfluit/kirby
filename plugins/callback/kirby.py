@@ -8,10 +8,17 @@ from typing import Any
 
 from ansible.plugins.callback import CallbackBase
 from ansible.utils.display import Display
-
-from kirby.config import KirbyConfig, load_config
-from kirby.coverage import CoverageTracker
-from kirby.runner import ServerspecResult, ServerspecRunner
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.config import (
+    KirbyConfig,
+    load_config,
+)
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.coverage import (
+    CoverageTracker,
+)
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.runner import (
+    ServerspecResult,
+    ServerspecRunner,
+)
 
 DOCUMENTATION = """
     name: kirby

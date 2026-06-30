@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install package and test dependencies
+      - name: Install test dependencies
         run: pip install -e ".[test]"
 
       - name: Ruff lint
@@ -59,7 +59,13 @@ jobs:
             libffi-dev build-essential ruby ruby-bundler ruby-dev
 
       - name: Install Python packages
-        run: pip install -e . ansible-core behave
+        run: pip install ansible-core behave
+
+      - name: Build and install collection
+        run: |
+          ansible-galaxy collection build --force
+          ansible-galaxy collection install stefanfluit-kirby-*.tar.gz --force
+          rm -f stefanfluit-kirby-*.tar.gz
 
       - name: Install Ruby gems for examples
         working-directory: examples
@@ -101,7 +107,13 @@ jobs:
             libffi-dev build-essential ruby ruby-bundler ruby-dev
 
       - name: Install ansible-core ${{ matrix.ansible-core-version }}
-        run: pip install -e . "ansible-core==${{ matrix.ansible-core-version }}"
+        run: pip install "ansible-core==${{ matrix.ansible-core-version }}"
+
+      - name: Build and install collection
+        run: |
+          ansible-galaxy collection build --force
+          ansible-galaxy collection install stefanfluit-kirby-*.tar.gz --force
+          rm -f stefanfluit-kirby-*.tar.gz
 
       - name: Install Ruby gems
         working-directory: examples

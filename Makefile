@@ -2,7 +2,7 @@ PIPX ?= pipx
 
 .DEFAULT_GOAL := help
 
-.PHONY: help _require-pipx _require-behave dev install test lint format format-check ansible-lint bdd check clean
+.PHONY: help _require-pipx _require-behave dev test lint format format-check ansible-lint collection-install bdd check clean
 
 help: ## Show available targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -12,11 +12,8 @@ _require-pipx:
 	@command -v $(PIPX) >/dev/null 2>&1 || \
 		{ echo "Error: pipx not found. Install it: https://pipx.pypa.io/stable/installation/"; exit 1; }
 
-dev: _require-pipx ## Install package with dev dependencies (pytest, ruff, ansible-lint, behave)
+dev: _require-pipx ## Install dev dependencies (pytest, ruff, ansible-lint, behave)
 	$(PIPX) install -e ".[dev]"
-
-install: _require-pipx ## Install package (production only)
-	$(PIPX) install -e .
 
 test: ## Run unit tests
 	pytest
@@ -37,7 +34,12 @@ _require-behave:
 	@command -v behave >/dev/null 2>&1 || \
 		{ echo "Error: behave not found. Run: make dev"; exit 1; }
 
-bdd: _require-behave ## Run BDD integration tests (requires Ruby + ansible-core installed)
+collection-install: ## Build and install the collection locally (required before bdd)
+	ansible-galaxy collection build --force
+	ansible-galaxy collection install stefanfluit-kirby-*.tar.gz --force
+	rm -f stefanfluit-kirby-*.tar.gz
+
+bdd: _require-behave collection-install ## Run BDD integration tests (requires Ruby + ansible-core)
 	behave tests/features/ --no-source
 
 check: lint format-check test ansible-lint ## Run all checks (lint, format, unit tests, ansible-lint)

@@ -13,3 +13,21 @@ tags:
 repository: https://github.com/stefanfluit/kirby
 documentation: https://github.com/stefanfluit/kirby
 homepage: https://github.com/stefanfluit/kirby
+
+build_ignore:
+  - .git
+  - .github
+  - .gitignore
+  - .pytest_cache
+  - .ruff_cache
+  - .ansible
+  - "*.tar.gz"
+  - build
+  - dist
+  - tests
+  - examples
+  - pyproject.toml
+  - Makefile
+  - behave.ini
+  - ansible-lint.yaml
+  - FAQ.md

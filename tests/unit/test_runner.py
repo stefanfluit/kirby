@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock, patch
 
-from kirby.runner import ServerspecResult, ServerspecRunner
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.runner import (
+    ServerspecResult,
+    ServerspecRunner,
+)
 
 
 def _make_runner(directory: str = ".") -> ServerspecRunner:

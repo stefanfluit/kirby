@@ -3,8 +3,11 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
-
-from kirby.config import KirbyConfig, _mk_boolean, load_config
+from ansible_collections.stefanfluit.kirby.plugins.module_utils.config import (
+    KirbyConfig,
+    _mk_boolean,
+    load_config,
+)
 
 FIXTURES = Path(__file__).parent.parent / "fixtures"
 
